@@ -9,3 +9,9 @@ variable "api_stage" {
   type        = string
   default     = "develop"
 }
+
+variable "api_description" {
+  description = "The api description"
+  type        = string
+  default     = "Api de uso interno para o sistema Pediatech"
+}
