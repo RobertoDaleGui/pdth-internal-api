@@ -2,7 +2,7 @@ resource "aws_api_gateway_rest_api" "example" {
   body = jsonencode({
     openapi = "3.0.1"
     info = {
-      title   = "example"
+      title   = var.api_name
       version = "1.0"
     }
     paths = {
@@ -19,7 +19,7 @@ resource "aws_api_gateway_rest_api" "example" {
     }
   })
 
-  name = "pdth-internal-api"
+  name = var.api_name
 
   endpoint_configuration {
     types = ["REGIONAL"]
@@ -41,5 +41,5 @@ resource "aws_api_gateway_deployment" "example" {
 resource "aws_api_gateway_stage" "example" {
   deployment_id = aws_api_gateway_deployment.example.id
   rest_api_id   = aws_api_gateway_rest_api.example.id
-  stage_name    = "develop"
+  stage_name    = var.api_stage
 }
